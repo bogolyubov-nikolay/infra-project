@@ -3,39 +3,40 @@
   hosts: all
   become: yes
   tasks:
-    - name: Установить и запустить Nginx
+    - name: Установить Nginx
       apt:
         name: nginx
         state: present
         update_cache: yes
-    - name: Запустить Nginx
+    - name: Запустить и включить Nginx
       service:
         name: nginx
         state: started
         enabled: yes
 
-    - name: Установить и запустить MariaDB
+    - name: Установить MariaDB сервер
       apt:
         name: mariadb-server
         state: present
         update_cache: yes
-    - name: Запустить MariaDB
+    - name: Запустить и включить MariaDB
       service:
         name: mariadb
         state: started
         enabled: yes
       ignore_errors: yes
 
-    - name: Развернуть конфиги Nginx
+    - name: Скопировать конфигурационные файлы Nginx
       copy:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
       loop:
         - { src: '../nginx-configs/site-test.conf', dest: '/etc/nginx/sites-available/site-test.conf' }
         - { src: '../nginx-configs/custom.conf', dest: '/etc/nginx/sites-available/custom.conf' }
+      ignore_errors: yes
       notify: Перезапустить nginx
 
-    - name: Включить сайты
+    - name: Включить сайты (создать символьные ссылки)
       file:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -43,6 +44,7 @@
       loop:
         - { src: '/etc/nginx/sites-available/site-test.conf', dest: '/etc/nginx/sites-enabled/site-test.conf' }
         - { src: '/etc/nginx/sites-available/custom.conf', dest: '/etc/nginx/sites-enabled/custom.conf' }
+      ignore_errors: yes
       notify: Перезапустить nginx
 
     - name: Развернуть тестовую страницу
