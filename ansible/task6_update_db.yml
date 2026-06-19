@@ -1,0 +1,13 @@
+---
+- name: Обновление пакетов на серверах db
+  hosts: db
+  become: yes
+  tasks:
+    - name: Обновить кэш apt
+      apt:
+        update_cache: yes
+
+    - name: Установить все обновления
+      apt:
+        upgrade: dist
+        autoremove: yes

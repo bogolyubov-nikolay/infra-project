@@ -1,0 +1,20 @@
+---
+- name: Развертывание конфигурации Nginx
+  hosts: web
+  become: yes
+  tasks:
+    - name: Копировать конфигурационный файл
+      copy:
+        src: site-test.conf
+        dest: /etc/nginx/sites-available/site-test.conf
+
+    - name: Включить сайт
+      file:
+        src: /etc/nginx/sites-available/site-test.conf
+        dest: /etc/nginx/sites-enabled/site-test.conf
+        state: link
+
+    - name: Перезапустить Nginx
+      service:
+        name: nginx
+        state: restarted

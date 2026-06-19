@@ -1,0 +1,16 @@
+---
+- name: Установка и запуск Nginx на web-сервере
+  hosts: web
+  become: yes
+  tasks:
+    - name: Установить пакет nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Убедиться, что Nginx запущен
+      service:
+        name: nginx
+        state: started
+        enabled: yes

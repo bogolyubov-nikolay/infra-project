@@ -1,0 +1,26 @@
+---
+- name: Проверка и запуск MariaDB на группе db
+  hosts: db
+  become: yes
+  tasks:
+    - name: Проверить статус mariadb
+      command: systemctl is-active mariadb
+      register: mariadb_status
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Запустить mariadb, если не работает
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+      when: mariadb_status.stdout != 'active'
+
+    - name: Повторно проверить статус
+      command: systemctl is-active mariadb
+      register: final_status
+      changed_when: false
+
+    - name: Вывести финальный статус
+      debug:
+        msg: "MariaDB status: {{ final_status.stdout }}"

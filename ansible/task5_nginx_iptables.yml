@@ -1,0 +1,52 @@
+---
+- name: Установка, настройка Nginx и настройка iptables
+  hosts: web
+  become: yes
+  tasks:
+    # 1. Установка Nginx
+    - name: Установить Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    # 2. Настройка Nginx: копируем конфиг с портом 8082 и включаем сайт
+    - name: Скопировать конфигурационный файл
+      copy:
+        src: custom.conf
+        dest: /etc/nginx/sites-available/custom.conf
+
+    - name: Включить сайт custom
+      file:
+        src: /etc/nginx/sites-available/custom.conf
+        dest: /etc/nginx/sites-enabled/custom.conf
+        state: link
+      notify: перезапустить nginx
+
+    # 3. Настройка iptables: разрешить HTTP (порт 80 и 8082)
+    - name: Разрешить HTTP-трафик на порт 80
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "80"
+        jump: ACCEPT
+        action: insert
+        rule_num: 1
+
+    - name: Разрешить HTTP-трафик на порт 8082
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "8082"
+        jump: ACCEPT
+        action: insert
+        rule_num: 2
+
+    - name: Сохранить правила iptables
+      command: netfilter-persistent save
+
+  handlers:
+    - name: перезапустить nginx
+      service:
+        name: nginx
+        state: restarted

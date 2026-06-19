@@ -1,0 +1,56 @@
+---
+- name: Полное развёртывание инфраструктуры с нуля
+  hosts: all
+  become: yes
+  tasks:
+    - name: Установить и запустить Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Запустить Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Установить и запустить MariaDB
+      apt:
+        name: mariadb-server
+        state: present
+        update_cache: yes
+    - name: Запустить MariaDB
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Развернуть конфиги Nginx
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { src: '../nginx-configs/site-test.conf', dest: '/etc/nginx/sites-available/site-test.conf' }
+        - { src: '../nginx-configs/custom.conf', dest: '/etc/nginx/sites-available/custom.conf' }
+      notify: Перезапустить nginx
+
+    - name: Включить сайты
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+      loop:
+        - { src: '/etc/nginx/sites-available/site-test.conf', dest: '/etc/nginx/sites-enabled/site-test.conf' }
+        - { src: '/etc/nginx/sites-available/custom.conf', dest: '/etc/nginx/sites-enabled/custom.conf' }
+      notify: Перезапустить nginx
+
+    - name: Развернуть тестовую страницу
+      copy:
+        content: "<h1>Hello from CI/CD pipeline</h1>"
+        dest: /var/www/html/index.html
+
+  handlers:
+    - name: Перезапустить nginx
+      service:
+        name: nginx
+        state: restarted
