@@ -24,6 +24,7 @@
         name: mariadb
         state: started
         enabled: yes
+      ignore_errors: yes
 
     - name: Развернуть конфиги Nginx
       copy:
