@@ -13,6 +13,8 @@
 ### 📸 Демонстрация работы
 ![Главная страница Nginx](docs/screenshots/nginx-welcome.jpg)
 ![Успешный CI/CD](docs/screenshots/actions-success.jpg)
+![Проверка всех заданий](docs/screenshots/tasks-check.jpg)
+![Правила iptables](docs/screenshots/iptables-check.jpg)
 ---
 
 ### Структура
