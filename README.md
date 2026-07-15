@@ -19,6 +19,20 @@
 | ![Проверка всех заданий](docs/screenshots/tasks-check.jpg) | ![Правила iptables](docs/screenshots/iptables-check.jpg) |
 ---
 
+### Выполненные задания
+| № | Задание | Ключевые файлы |
+|---|---------|----------------|
+| 1 | Базовые команды Linux | [`docs/task1-linux.md`](docs/task1-linux.md) |
+| 2 | Управление пользователями | [`docs/task2-users.md`](docs/task2-users.md) |
+| 3 | Конфигурация сети | [`docs/task3-network.md`](docs/task3-network.md) |
+| 4 | Мониторинг и логирование | [`docs/task4-monitoring.md`](docs/task4-monitoring.md) |
+| 5 | Bash‑скрипты | [`docs/task5-scripts.md`](docs/task5-scripts.md) |
+| 6 | systemd | [`docs/task6-systemd.md`](docs/task6-systemd.md) |
+| 7 | iptables | [`docs/task7-iptables.md`](docs/task7-iptables.md) |
+| 8 | Ansible (роли) | [`docs/task8-ansible.md`](docs/task8-ansible.md) |
+| 9 | CI/CD | [`docs/task9-cicd.md`](docs/task9-cicd.md) |
+| 10 | Документация | [`docs/task1-linux.md`](docs/task1-linux.md) … [`docs/task9-cicd.md`](docs/task9-cicd.md) |
+
 ### Структура
 - `ansible/` — плейбуки, роль webserver, инвентарь
 - `scripts/` — bash‑скрипты (backup, log‑parser, monitor, check‑updates)
