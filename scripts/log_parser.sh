@@ -1,0 +1,10 @@
+#!/bin/bash
+LOG="/root/random_logs.txt"
+echo "=== ОШИБКИ (ERROR) ==="
+grep "ERROR" "$LOG"
+echo ""
+echo "=== ПРЕДУПРЕЖДЕНИЯ (WARNING) ==="
+grep "WARNING" "$LOG"
+echo ""
+echo "=== ВСЕГО СТРОК ==="
+wc -l "$LOG"

@@ -1,0 +1,6 @@
+---
+- name: Применение роли webserver к группе web
+  hosts: web
+  become: yes
+  roles:
+    - webserver

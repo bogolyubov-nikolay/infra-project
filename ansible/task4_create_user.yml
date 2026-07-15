@@ -1,0 +1,13 @@
+---
+- name: Создание пользователя deploy на web-серверах
+  hosts: web
+  become: yes
+  tasks:
+    - name: Создать пользователя deploy с паролем и добавить в sudo
+      user:
+        name: deploy
+        password: "$6$w4kQ/of/kUsHp9XL$1hyba4SBZ/lNNTu0my2RmP2gRXL5O9LjYYwEBQFF76ESG4ZO22TcH.zbpDsEmH2Tw4KZBXi3QHddLd02NtOjQ/"
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        state: present

@@ -1,0 +1,10 @@
+[Unit]
+Description=Проверка конфигурации Nginx
+Before=nginx.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/nginx-check.sh
+
+[Install]
+WantedBy=multi-user.target

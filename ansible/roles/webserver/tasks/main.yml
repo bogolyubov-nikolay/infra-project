@@ -1,0 +1,12 @@
+---
+- name: Проверить наличие Nginx
+  stat:
+    path: /usr/sbin/nginx
+  register: nginx_bin
+
+- name: Запустить и включить Nginx (если установлен)
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  when: nginx_bin.stat.exists

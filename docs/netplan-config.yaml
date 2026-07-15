@@ -1,0 +1,12 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      addresses:
+        - 185.68.21.139/24
+        - 185.54.50.171/32
+        - 185.54.50.170/32
+      routes:
+        - to: default
+          via: 185.68.21.1

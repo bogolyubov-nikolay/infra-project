@@ -1,0 +1,24 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ main ]
+jobs:
+  syntax-check:
+    name: Проверка синтаксиса Ansible
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Установить Ansible
+        run: pip install ansible
+      - name: Проверить синтаксис
+        run: ansible-playbook -i ansible/inventory.ini ansible/deploy_full.yml --syntax-check
+  dry-run:
+    name: Сухой прогон плейбука
+    needs: syntax-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Установить Ansible
+        run: pip install ansible
+      - name: Dry-run деплой
+        run: ansible-playbook -i ansible/inventory.ini ansible/deploy_full.yml --check
