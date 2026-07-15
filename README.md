@@ -10,6 +10,9 @@
 
 Все задания выполнены на реальном VPS (Ubuntu 24.04, RuVDS) и сохранены в репозитории.
 
+### 📸 Демонстрация работы
+![Главная страница Nginx](docs/screenshots/nginx-welcome.jpg)
+![Успешный CI/CD](docs/screenshots/actions-success.jpg)
 ---
 
 ### Структура
