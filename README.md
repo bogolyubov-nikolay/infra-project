@@ -10,11 +10,13 @@
 
 Все задания выполнены на реальном VPS (Ubuntu 24.04, RuVDS) и сохранены в репозитории.
 
-### 📸 Демонстрация работы
-![Главная страница Nginx](docs/screenshots/nginx-welcome.jpg)
-![Успешный CI/CD](docs/screenshots/actions-success.jpg)
-![Проверка всех заданий](docs/screenshots/tasks-check.jpg)
-![Правила iptables](docs/screenshots/iptables-check.jpg)
+| Главная страница Nginx | Успешный CI/CD |
+|:---:|:---:|
+| ![Главная страница Nginx](docs/screenshots/nginx-welcome.jpg) | ![Успешный CI/CD](docs/screenshots/actions-success.jpg) |
+
+| Проверка всех заданий | Правила iptables |
+|:---:|:---:|
+| ![Проверка всех заданий](docs/screenshots/tasks-check.jpg) | ![Правила iptables](docs/screenshots/iptables-check.jpg) |
 ---
 
 ### Структура
