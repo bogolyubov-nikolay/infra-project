@@ -57,7 +57,14 @@
 ---
 
 ### Как развернуть с нуля
+
 ```bash
+# 1. Клонировать репозиторий
 git clone https://github.com/bogolyubov-nikolay/infra-project.git
 cd infra-project
-ansible-playbook -i ansible/inventory.ini ansible/deploy_full.yml
+
+# 2. Настроить инвентарь для локального теста
+echo -e "[web]\nlocalhost ansible_connection=local\n\n[db]\nlocalhost ansible_connection=local" > inventory.ini
+
+# 3. Запустить развёртывание
+ansible-playbook -i inventory.ini ansible/deploy_full.yml
