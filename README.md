@@ -56,17 +56,8 @@
 
 ---
 
-### 🚀 Как развернуть с нуля
-
-Выполните эти команды на чистом сервере с Ubuntu 24.04:
-
-<pre><code># 1. Клонировать репозиторий
+### Как развернуть с нуля
+```bash
 git clone https://github.com/bogolyubov-nikolay/infra-project.git
 cd infra-project
-
-# 2. Настроить инвентарь для локального теста
-echo -e "[web]\nlocalhost ansible_connection=local\n\n[db]\nlocalhost ansible_connection=local" > inventory.ini
-
-# 3. Запустить развёртывание
-ansible-playbook -i inventory.ini ansible/deploy_full.yml
-</code></pre>
+ansible-playbook -i ansible/inventory.ini ansible/deploy_full.yml
