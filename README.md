@@ -60,12 +60,13 @@
 
 Выполните эти команды на чистом сервере с Ubuntu 24.04:
 
-    # 1. Клонировать репозиторий
-    git clone https://github.com/bogolyubov-nikolay/infra-project.git
-    cd infra-project
+<pre><code># 1. Клонировать репозиторий
+git clone https://github.com/bogolyubov-nikolay/infra-project.git
+cd infra-project
 
-    # 2. Настроить инвентарь для локального теста
-    echo -e "[web]\nlocalhost ansible_connection=local\n\n[db]\nlocalhost ansible_connection=local" > inventory.ini
+# 2. Настроить инвентарь для локального теста
+echo -e "[web]\nlocalhost ansible_connection=local\n\n[db]\nlocalhost ansible_connection=local" > inventory.ini
 
-    # 3. Запустить развёртывание
-    ansible-playbook -i inventory.ini ansible/deploy_full.yml
+# 3. Запустить развёртывание
+ansible-playbook -i inventory.ini ansible/deploy_full.yml
+</code></pre>
