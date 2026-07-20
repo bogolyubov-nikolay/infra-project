@@ -70,3 +70,4 @@ echo -e "[web]\nlocalhost ansible_connection=local\n\n[db]\nlocalhost ansible_co
 
 # 3. Запустить развёртывание
 ansible-playbook -i inventory.ini ansible/deploy_full.yml
+```
