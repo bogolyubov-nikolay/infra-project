@@ -33,6 +33,19 @@
 | 9 | CI/CD | [`docs/task9-cicd.md`](docs/task9-cicd.md) |
 | 10 | Документация | [`docs/task1-linux.md`](docs/task1-linux.md) … [`docs/task9-cicd.md`](docs/task9-cicd.md) |
 
+### 📋 Как проверить проект
+
+**Автоматическая часть (задания 6–9) проверяется развёртыванием на любой ВМ с Ubuntu 24.04:**
+1.  Склонируйте репозиторий: `git clone https://github.com/bogolyubov-nikolay/infra-project.git && cd infra-project`
+2.  Настройте инвентарь под вашу ВМ. Для локального теста: `echo -e "[web]\nlocalhost ansible_connection=local\n[db]\nlocalhost ansible_connection=local" > inventory.ini`
+3.  Запустите развёртывание: `ansible-playbook -i inventory.ini deploy_full.yml`
+4.  Откройте в браузере `http://<IP>` — увидите тестовую страницу Nginx.
+
+**Ручная часть (задания 1–5) подтверждена файлами:**
+- Скрипты и отчёты — в папках `scripts/` и `docs/`.
+- Документация с командами и логами — `docs/task1-linux.md` … `docs/task5-scripts.md`.
+- Скриншоты успешного выполнения — в разделе «Демонстрация работы».
+  
 ### Структура
 - `ansible/` — плейбуки, роль webserver, инвентарь
 - `scripts/` — bash‑скрипты (backup, log‑parser, monitor, check‑updates)
