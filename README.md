@@ -38,7 +38,7 @@
 **Автоматическая часть (задания 6–9) проверяется развёртыванием на любой ВМ с Ubuntu 24.04:**
 1.  Склонируйте репозиторий: `git clone https://github.com/bogolyubov-nikolay/infra-project.git && cd infra-project`
 2.  Настройте инвентарь под вашу ВМ. Для локального теста: `echo -e "[web]\nlocalhost ansible_connection=local\n[db]\nlocalhost ansible_connection=local" > inventory.ini`
-3.  Запустите развёртывание: `ansible-playbook -i inventory.ini deploy_full.yml`
+3.  Запустите развёртывание: `ansible-playbook -i inventory.ini ansible/deploy_full.yml`
 4.  Откройте в браузере `http://<IP>` — увидите тестовую страницу Nginx.
 
 **Ручная часть (задания 1–5) подтверждена файлами:**
